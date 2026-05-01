@@ -2,135 +2,243 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programming Cub — клуб программистов</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Programming Cub | // код и сообщество</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Консольная строка сверху -->
+    <div class="top-bar">
+        <div class="terminal-dots">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+        </div>
+        <div class="terminal-path">~/ProgrammingCub</div>
+        <div class="terminal-status">online</div>
+    </div>
 
     <!-- Навигация -->
     <nav>
         <div class="nav-container">
-            <div class="logo">Programming Cub</div>
-            <div class="nav-links">
-                <a href="#">Статьи</a>
-                <a href="#">События</a>
-                <a href="#">Сообщество</a>
+            <div class="logo">
+                <span class="bracket">⟨</span>
+                Programming Cub
+                <span class="bracket">⟩</span>
             </div>
+            <div class="nav-links">
+                <a href="#">$ cd articles</a>
+                <a href="#">$ cd events</a>
+                <a href="#">$ join</a>
+            </div>
+            <div class="mobile-menu-btn">☰</div>
         </div>
     </nav>
 
-    <!-- Главный блок (Hero) -->
+    <!-- Герой с терминалом -->
     <header class="hero">
         <div class="hero-content">
-            <h1>Клуб, где программисты<br>растут вместе</h1>
-            <p>Никакой воды. Только опыт, код и живые встречи. Присоединяйся к сообществу, которое помогает становиться лучше каждый день.</p>
-            <a href="#" class="btn">Вступить в клуб →</a>
+            <div class="terminal-window">
+                <div class="terminal-header">
+                    <span>developer@club:~$</span>
+                </div>
+                <div class="terminal-body">
+                    <p><span class="prompt">$</span> whoami</p>
+                    <p class="output">> Programming Cub — клуб для разработчиков, которые пишут код и меняют мир</p>
+                    <p><span class="prompt">$</span> skills --add</p>
+                    <p class="output">> Python • JavaScript • Go • Rust • Algorithms • Open Source</p>
+                    <div class="code-block">
+                        <pre><code><span class="code-keyword">while</span> <span class="code-variable">alive</span>:
+    <span class="code-function">learn</span>()
+    <span class="code-function">code</span>()
+    <span class="code-function">grow</span>()</code></pre>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
-    <!-- Сетка статей -->
     <main class="container">
+        <!-- Статистика -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">128</div>
+                <div class="stat-label">участников</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">47</div>
+                <div class="stat-label">статей</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">12</div>
+                <div class="stat-label">хакатонов</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">∞</div>
+                <div class="stat-label">кофе</div>
+            </div>
+        </div>
+
+        <!-- Секция статей -->
         <div class="section-header">
-            <h2>Свежие материалы</h2>
-            <a href="#" class="see-all">Все статьи →</a>
+            <h2>// latest articles</h2>
+            <a href="#" class="see-all">view all →</a>
         </div>
 
         <div class="articles-grid">
             <article class="article-card">
-                <div class="tag">Python</div>
+                <div class="card-header">
+                    <span class="file-icon">📄</span>
+                    <span class="file-name">guide_python.md</span>
+                </div>
                 <h3>Как не бросить программирование после первой недели</h3>
-                <p>5 конкретных шагов, которые помогут пройти через "момент отчаяния" и выйти на уровень уверенного новичка.</p>
-                <div class="meta">
-                    <span>📅 12 мая 2026</span>
-                    <span>📖 8 мин чтения</span>
+                <p>5 конкретных шагов, которые помогут пройти через "момент отчаяния" и выйти на уровень уверенного новичка</p>
+                <div class="card-footer">
+                    <span class="lang-tag">🐍 Python</span>
+                    <span class="read-time">8 min read</span>
                 </div>
             </article>
 
             <article class="article-card">
-                <div class="tag">Карьера</div>
+                <div class="card-header">
+                    <span class="file-icon">📄</span>
+                    <span class="file-name">career_guide.md</span>
+                </div>
                 <h3>Что ждать на первом собеседовании Junior-разработчика</h3>
-                <p>Реальные вопросы с реальных собесов. Как подготовиться и что учить в первую очередь.</p>
-                <div class="meta">
-                    <span>📅 8 мая 2026</span>
-                    <span>📖 12 мин чтения</span>
+                <p>Реальные вопросы с реальных собесов. Как подготовиться и что учить в первую очередь</p>
+                <div class="card-footer">
+                    <span class="lang-tag">💼 Карьера</span>
+                    <span class="read-time">12 min read</span>
                 </div>
             </article>
 
             <article class="article-card">
-                <div class="tag">Git</div>
+                <div class="card-header">
+                    <span class="file-icon">📄</span>
+                    <span class="file-name">git_manual.md</span>
+                </div>
                 <h3>Git для новичка: инструкция без паники</h3>
-                <p>Как перестать бояться merge конфликтов и начать коммитить как профи.</p>
-                <div class="meta">
-                    <span>📅 2 мая 2026</span>
-                    <span>📖 6 мин чтения</span>
+                <p>Как перестать бояться merge конфликтов и начать коммитить как профи</p>
+                <div class="card-footer">
+                    <span class="lang-tag">🐙 Git</span>
+                    <span class="read-time">6 min read</span>
                 </div>
             </article>
 
             <article class="article-card">
-                <div class="tag">Менталка</div>
+                <div class="card-header">
+                    <span class="file-icon">📄</span>
+                    <span class="file-name">impostor.md</span>
+                </div>
                 <h3>Синдром самозванца в IT: как с ним жить</h3>
-                <p>Личный опыт джуниора, который думал, что его вот-вот уволят. (Спойлер: не уволили).</p>
-                <div class="meta">
-                    <span>📅 28 апреля 2026</span>
-                    <span>📖 5 мин чтения</span>
+                <p>Личный опыт джуниора, который думал, что его вот-вот уволят</p>
+                <div class="card-footer">
+                    <span class="lang-tag">🧠 Менталка</span>
+                    <span class="read-time">5 min read</span>
                 </div>
             </article>
         </div>
 
-        <!-- Блок с событиями -->
-        <div class="section-header" style="margin-top: 48px;">
-            <h2>Ближайшие встречи</h2>
-            <a href="#" class="see-all">Календарь →</a>
+        <!-- Секция событий -->
+        <div class="section-header">
+            <h2>// upcoming events</h2>
+            <a href="#" class="see-all">calendar →</a>
         </div>
 
-        <div class="events-list">
-            <div class="event-item">
-                <div class="event-date">22<br>мая</div>
-                <div class="event-info">
+        <div class="events-grid">
+            <div class="event-card">
+                <div class="event-date">
+                    <span class="day">22</span>
+                    <span class="month">MAY</span>
+                </div>
+                <div class="event-content">
                     <h3>Онлайн-митап: «Твой первый опенсорс контрибьют»</h3>
                     <p>Разбираем на реальном примере, как сделать пул-реквест в большой проект</p>
+                    <div class="event-meta">
+                        <span>🕒 19:00 MSK</span>
+                        <span>💻 Discord</span>
+                    </div>
                 </div>
             </div>
-            <div class="event-item">
-                <div class="event-date">5<br>июн</div>
-                <div class="event-info">
+
+            <div class="event-card">
+                <div class="event-date">
+                    <span class="day">05</span>
+                    <span class="month">JUN</span>
+                </div>
+                <div class="event-content">
                     <h3>Код-ревью вечер: разбор пет-проектов участников</h3>
                     <p>Присылай свой код — вместе найдем, что улучшить</p>
+                    <div class="event-meta">
+                        <span>🕒 18:00 MSK</span>
+                        <span>💻 Zoom</span>
+                    </div>
                 </div>
             </div>
-            <div class="event-item">
-                <div class="event-date">19<br>июн</div>
-                <div class="event-info">
+
+            <div class="event-card">
+                <div class="event-date">
+                    <span class="day">19</span>
+                    <span class="month">JUN</span>
+                </div>
+                <div class="event-content">
                     <h3>Живой стрим: собеседование с реальным тимлидом</h3>
                     <p>Узнай, что спрашивают на техсобесе и как отвечать</p>
+                    <div class="event-meta">
+                        <span>🕒 20:00 MSK</span>
+                        <span>💻 YouTube</span>
+                    </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- Подписка -->
+        <div class="subscribe-card">
+            <div class="subscribe-content">
+                <div class="code-icon">{ }</div>
+                <h3>Будь в курсе событий</h3>
+                <p>Никакого спама. Только анонсы митапов и новые статьи</p>
+                <form class="subscribe-form">
+                    <input type="email" placeholder="developer@example.com">
+                    <button type="submit">Subscribe →</button>
+                </form>
             </div>
         </div>
     </main>
 
-    <!-- Подвал -->
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <h4>Programming Cub</h4>
-                <p>Сообщество для начинающих разработчиков, которые хотят расти быстрее.</p>
+                <div class="logo">
+                    <span class="bracket">⟨</span>
+                    Programming Cub
+                    <span class="bracket">⟩</span>
+                </div>
+                <p class="tagline">// где код становится искусством</p>
+                <div class="social-links">
+                    <a href="#">GitHub</a>
+                    <a href="#">Telegram</a>
+                    <a href="#">Discord</a>
+                    <a href="#">Twitter</a>
+                </div>
             </div>
             <div class="footer-section">
-                <h4>Навигация</h4>
-                <a href="#">Статьи</a>
-                <a href="#">События</a>
-                <a href="#">Сообщество в TG</a>
+                <h4>quick links</h4>
+                <a href="#">~/articles</a>
+                <a href="#">~/events</a>
+                <a href="#">~/community</a>
+                <a href="#">~/code-of-conduct</a>
             </div>
             <div class="footer-section">
-                <h4>Контакты</h4>
-                <a href="#">club@programmingcub.ru</a>
-                <a href="#">Telegram-канал</a>
-                <a href="#">Discord сервер</a>
+                <h4>resources</h4>
+                <a href="#">GitHub репозиторий</a>
+                <a href="#">Open Source проекты</a>
+                <a href="#">Челенджи и задачи</a>
+                <a href="#">Библиотека знаний</a>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2026 Programming Cub. Никакой рекламы, только полезный контент.</p>
+            <p>© 2026 Programming Cub | crafted with ☕ and &lt;code&gt;</p>
         </div>
     </footer>
 
