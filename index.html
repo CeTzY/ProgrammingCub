@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>Programming Cub | // уроки Python</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Telegram Web App -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
     <!-- Консольная строка -->
@@ -46,7 +48,7 @@
                     <p><span class="prompt">$</span> python --version</p>
                     <p class="output">Python 3.14.4 | Программирование с нуля</p>
                     <p><span class="prompt">$</span> whoami</p>
-                    <p class="output">> Я — CeTzY, создатель Programming Club. Учу писать код без боли</p>
+                    <p class="output" id="user-greeting">> Загрузка...</p>
                     <div class="code-block">
                         <pre><code><span class="code-keyword">print</span>(<span class="code-string">"Добро пожаловать в клуб!"</span>)
 <span class="code-keyword">while</span> <span class="code-variable">alive</span>:
@@ -87,7 +89,7 @@
         </div>
 
         <div class="lessons-grid">
-            <div class="lesson-card" data-lesson="1">
+            <div class="lesson-card" data-lesson="1" data-title="Переменные">
                 <div class="lesson-number">01</div>
                 <div class="lesson-info">
                     <h3>Переменные</h3>
@@ -95,7 +97,7 @@
                     <div class="lesson-meta"><span>📖 15 мин</span><span>⭐ Основы</span></div>
                 </div>
             </div>
-            <div class="lesson-card" data-lesson="2">
+            <div class="lesson-card" data-lesson="2" data-title="Вывод и ввод">
                 <div class="lesson-number">02</div>
                 <div class="lesson-info">
                     <h3>Вывод и ввод</h3>
@@ -103,7 +105,7 @@
                     <div class="lesson-meta"><span>📖 12 мин</span><span>⭐ Основы</span></div>
                 </div>
             </div>
-            <div class="lesson-card" data-lesson="3">
+            <div class="lesson-card" data-lesson="3" data-title="Условия">
                 <div class="lesson-number">03</div>
                 <div class="lesson-info">
                     <h3>Условия</h3>
@@ -111,7 +113,7 @@
                     <div class="lesson-meta"><span>📖 18 мин</span><span>⭐⭐ Средний</span></div>
                 </div>
             </div>
-            <div class="lesson-card" data-lesson="4">
+            <div class="lesson-card" data-lesson="4" data-title="Арифметика и логика">
                 <div class="lesson-number">04</div>
                 <div class="lesson-info">
                     <h3>Арифметика и логика</h3>
@@ -119,7 +121,7 @@
                     <div class="lesson-meta"><span>📖 20 мин</span><span>⭐⭐ Средний</span></div>
                 </div>
             </div>
-            <div class="lesson-card" data-lesson="5">
+            <div class="lesson-card" data-lesson="5" data-title="Циклы">
                 <div class="lesson-number">05</div>
                 <div class="lesson-info">
                     <h3>Циклы</h3>
@@ -127,6 +129,26 @@
                     <div class="lesson-meta"><span>📖 25 мин</span><span>⭐⭐⭐ Продвинутый</span></div>
                 </div>
             </div>
+        </div>
+
+        <!-- Главное меню (нижняя панель) -->
+        <div class="bottom-menu">
+            <button class="menu-btn" data-action="chat">
+                <span>💬</span>
+                <span>Чат</span>
+            </button>
+            <button class="menu-btn" data-action="lessons">
+                <span>🐍</span>
+                <span>Уроки</span>
+            </button>
+            <button class="menu-btn" data-action="bot">
+                <span>🤖</span>
+                <span>Бот</span>
+            </button>
+            <button class="menu-btn" data-action="share">
+                <span>📤</span>
+                <span>Поделиться</span>
+            </button>
         </div>
 
         <div class="telegram-card">
@@ -142,10 +164,11 @@
             </div>
         </div>
 
-        <div class="card">
+        <div class="help-card">
+            <div class="help-icon">❓</div>
             <div class="help-content">
                 <h3>Что-то непонятно?</h3>
-                <p>Пиши <strong><a href="https://t.me/CeTzyyy" target="_blank" style="color: var(--primary);">@CeTzyyy</a></strong> в Telegram — объясню в личке.</p>
+                <p>Пиши <strong><a href="https://t.me/CeTzyyy" target="_blank" style="color: var(--primary);">@CeTzyyy</a></strong> в Telegram — объясню в личке. Без стеснения, я душнить не буду 😉</p>
             </div>
         </div>
     </main>
@@ -189,6 +212,7 @@
                 <div class="telegram-links" style="justify-content: center;">
                     <a href="https://t.me/CeTzYPythonLessons" class="tg-link" target="_blank"><span>🐍</span> Все уроки в Telegram</a>
                     <a href="https://t.me/CeTzyyy" class="tg-link" target="_blank"><span>💬</span> Написать @CeTzyyy</a>
+                    <button id="share-lesson-btn" class="tg-link" style="background: none; cursor: pointer;"><span>📤</span> Поделиться уроком</button>
                 </div>
             </div>
         </div>
