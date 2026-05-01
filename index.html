@@ -3,22 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой проект</title>
+    <title>Programming Cub | Клуб программистов</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="container">
-        <h1>Добро пожаловать</h1>
-        <p>Введите данные для входа в систему</p>
+        <!-- Шапка -->
+        <div class="header">
+            <h1>💻 Programming Cub</h1>
+            <p>Клуб молодых программистов</p>
+        </div>
 
-        <label for="name">Ваше имя</label>
-        <input type="text" id="name" placeholder="Например, Алексей">
+        <!-- О клубе -->
+        <section class="about">
+            <h2>О нас</h2>
+            <p>Мы — сообщество начинающих разработчиков, которые вместе изучают программирование, делятся опытом и создают крутые проекты. Присоединяйся к нам!</p>
+        </section>
 
-        <label for="email">Электронная почта</label>
-        <input type="email" id="email" placeholder="mail@example.com">
+        <!-- Статьи -->
+        <section class="articles">
+            <h2>Свежие статьи</h2>
+            
+            <div class="card">
+                <h3>Как начать изучать Python в 2026 году</h3>
+                <p>Пошаговый гайд для новичков: с чего начать, какие ресурсы использовать и как не бросить на полпути...</p>
+                <a href="#" class="read-more">Читать →</a>
+            </div>
 
-        <button onclick="sayHello()">Войти</button>
+            <div class="card">
+                <h3>Топ-5 ошибок на собеседовании Junior</h3>
+                <p>Чего боятся работодатели и как произвести правильное впечатление, даже если мало опыта...</p>
+                <a href="#" class="read-more">Читать →</a>
+            </div>
+
+            <div class="card">
+                <h3>Git и GitHub: что нужно знать новичку</h3>
+                <p>Объясняем на пальцах, зачем нужны системы контроля версий и как не бояться командной строки...</p>
+                <a href="#" class="read-more">Читать →</a>
+            </div>
+        </section>
+
+        <!-- Мероприятия -->
+        <section class="events">
+            <h2>Ближайшие события</h2>
+            <ul>
+                <li><strong>15 мая</strong> — Вебинар: "Введение в React"</li>
+                <li><strong>22 мая</strong> — Хакатон: создай свой первый пет-проект</li>
+                <li><strong>5 июня</strong> — Разбор типичных ошибок в алгоритмах</li>
+            </ul>
+        </section>
+
+        <!-- Контакты -->
+        <div class="footer">
+            <p>По всем вопросам: <a href="mailto:club@programmingcub.ru">club@programmingcub.ru</a></p>
+            <p>Присоединяйся в <a href="#">Telegram</a> | <a href="#">Discord</a></p>
+            <p class="copyright">© 2026 Programming Cub</p>
+        </div>
     </div>
 
     <script src="script.js"></script>
