@@ -179,8 +179,9 @@ nav {
 .code-keyword { color: #ff79c6; }
 .code-variable { color: #50fa7b; }
 .code-function { color: #8be9fd; }
+.code-string { color: #f1fa8c; }
 
-/* QUICK ACCESS CARDS - Быстрые ссылки на ресурсы */
+/* QUICK ACCESS CARDS */
 .quick-access {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -251,7 +252,7 @@ nav {
     transform: translateX(5px);
 }
 
-/* Статистика */
+/* Статистика (если используется) */
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -319,77 +320,58 @@ nav {
     color: var(--primary);
 }
 
-/* Сетка статей */
-.articles-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 24px;
+/* LESSONS GRID */
+.lessons-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 60px;
 }
 
-.article-card {
+.lesson-card {
     background: var(--bg-card);
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 20px;
+    display: flex;
+    gap: 20px;
     transition: all 0.3s;
     cursor: pointer;
 }
 
-.article-card:hover {
-    transform: translateY(-4px);
+.lesson-card:hover {
+    transform: translateX(5px);
     border-color: var(--primary);
-    box-shadow: 0 8px 24px rgba(0, 255, 136, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 255, 136, 0.1);
 }
 
-.card-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 16px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--border);
-}
-
-.file-icon {
-    font-size: 20px;
-}
-
-.file-name {
-    font-size: 12px;
+.lesson-number {
+    font-size: 32px;
+    font-weight: bold;
     color: var(--primary);
     font-family: monospace;
+    min-width: 60px;
+    text-align: center;
 }
 
-.article-card h3 {
-    font-size: 18px;
-    margin-bottom: 12px;
-    line-height: 1.4;
+.lesson-info {
+    flex: 1;
 }
 
-.article-card p {
+.lesson-info h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.lesson-info p {
     color: var(--text-muted);
     font-size: 14px;
-    margin-bottom: 16px;
-    line-height: 1.5;
+    margin-bottom: 12px;
 }
 
-.card-footer {
+.lesson-meta {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 12px;
-}
-
-.lang-tag {
-    font-size: 12px;
-    padding: 4px 10px;
-    background: rgba(0, 255, 136, 0.1);
-    border-radius: 20px;
-    color: var(--primary);
-}
-
-.read-time {
+    gap: 16px;
     font-size: 12px;
     color: var(--text-muted);
 }
@@ -477,136 +459,166 @@ nav {
     font-size: 18px;
 }
 
-/* События */
-.events-grid {
+/* HELP CARD */
+.help-card {
+    background: linear-gradient(135deg, #2a1a3a 0%, #0a0a0f 100%);
+    border: 1px solid var(--secondary);
+    border-radius: 16px;
+    padding: 28px;
+    margin: 40px 0;
     display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-bottom: 60px;
-}
-
-.event-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px;
-    display: flex;
-    gap: 20px;
-    transition: all 0.3s;
+    align-items: center;
+    gap: 24px;
     flex-wrap: wrap;
-    cursor: pointer;
 }
 
-.event-card:hover {
-    border-color: var(--secondary);
-    transform: translateX(5px);
+.help-icon {
+    font-size: 48px;
 }
 
-.event-date {
-    text-align: center;
-    min-width: 70px;
-    padding: 12px;
-    background: rgba(0, 184, 255, 0.1);
-    border-radius: 8px;
-}
-
-.event-date .day {
-    font-size: 28px;
-    font-weight: bold;
-    color: var(--secondary);
-    display: block;
-}
-
-.event-date .month {
-    font-size: 12px;
-    color: var(--text-muted);
-}
-
-.event-content {
-    flex: 1;
-}
-
-.event-content h3 {
-    font-size: 18px;
+.help-content h3 {
+    font-size: 22px;
     margin-bottom: 8px;
+    color: var(--secondary);
 }
 
-.event-content p {
+.help-content p {
     color: var(--text-muted);
     font-size: 14px;
-    margin-bottom: 12px;
 }
 
-.event-meta {
-    display: flex;
-    gap: 16px;
-    font-size: 12px;
-    color: var(--text-muted);
-    flex-wrap: wrap;
+/* МОДАЛЬНОЕ ОКНО */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    overflow-y: auto;
 }
 
-/* Подписка */
-.subscribe-card {
-    background: linear-gradient(135deg, var(--bg-card) 0%, #1a1a24 100%);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 40px;
-    margin: 60px 0;
-    text-align: center;
+.modal-content {
+    background: var(--bg-card);
+    margin: 5% auto;
+    max-width: 800px;
+    width: 90%;
+    border-radius: 16px;
+    border: 1px solid var(--primary);
+    position: relative;
+    animation: modalFadeIn 0.3s;
 }
 
-.code-icon {
-    font-size: 48px;
-    margin-bottom: 16px;
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-.subscribe-card h3 {
-    font-size: 24px;
-    margin-bottom: 12px;
-}
-
-.subscribe-card p {
-    color: var(--text-muted);
-    margin-bottom: 24px;
-}
-
-.subscribe-form {
-    display: flex;
-    gap: 12px;
-    max-width: 400px;
-    margin: 0 auto;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.subscribe-form input {
-    flex: 1;
-    padding: 12px 16px;
-    background: var(--bg-dark);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    color: var(--text);
-    font-family: monospace;
-}
-
-.subscribe-form input:focus {
-    outline: none;
-    border-color: var(--primary);
-}
-
-.subscribe-form button {
-    padding: 12px 24px;
-    background: var(--primary);
-    color: var(--bg-dark);
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
+.close {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    font-size: 32px;
     font-weight: bold;
-    transition: transform 0.3s;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: color 0.3s;
+    z-index: 10;
 }
 
-.subscribe-form button:hover {
-    transform: scale(1.05);
+.close:hover {
+    color: var(--primary);
+}
+
+#modal-body {
+    padding: 30px;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.modal-footer {
+    padding: 20px 30px;
+    border-top: 1px solid var(--border);
+}
+
+/* Стили для контента уроков внутри модалки */
+.lesson-content {
+    font-family: 'Fira Code', monospace;
+}
+
+.lesson-content h1 {
+    color: var(--primary);
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.lesson-content h2 {
+    color: var(--secondary);
+    font-size: 22px;
+    margin: 25px 0 15px;
+}
+
+.lesson-content h3 {
+    color: var(--text);
+    font-size: 18px;
+    margin: 20px 0 10px;
+}
+
+.lesson-content p {
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.lesson-content .code-example {
+    background: #0a0a0f;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 3px solid var(--primary);
+    margin: 15px 0;
+    overflow-x: auto;
+}
+
+.lesson-content code {
+    font-family: 'Fira Code', monospace;
+    font-size: 13px;
+    color: #00ff88;
+}
+
+.lesson-content .task {
+    background: rgba(0, 184, 255, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    border-left: 3px solid var(--secondary);
+}
+
+.lesson-content .task h4 {
+    color: var(--secondary);
+    margin-bottom: 10px;
+}
+
+.lesson-content hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 20px 0;
+}
+
+.lesson-content ul, .lesson-content ol {
+    margin: 10px 0 15px 25px;
+    color: var(--text-muted);
+}
+
+.lesson-content li {
+    margin: 8px 0;
 }
 
 /* Футер */
@@ -684,7 +696,7 @@ html {
     scroll-behavior: smooth;
 }
 
-/* МЕДИА-ЗАПРОСЫ — ПОЛНАЯ АДАПТАЦИЯ ПОД ТЕЛЕФОН */
+/* МЕДИА-ЗАПРОСЫ — ПОЛНАЯ АДАПТАЦИЯ */
 @media (max-width: 768px) {
     .nav-links {
         display: none;
@@ -704,99 +716,20 @@ html {
         overflow-x: auto;
     }
     
-    .stats-grid {
-        gap: 12px;
-        margin: 40px 0;
-    }
-    
-    .stat-card {
-        padding: 16px;
-    }
-    
-    .stat-number {
-        font-size: 28px;
-    }
-    
     .section-header {
         margin: 40px 0 24px;
     }
     
-    .articles-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-    }
-    
-    .event-card {
+    .lesson-card {
         flex-direction: column;
-    }
-    
-    .event-date {
-        display: flex;
-        align-items: center;
+        align-items: flex-start;
         gap: 12px;
-        min-width: auto;
-        width: fit-content;
     }
     
-    .event-date .day, .event-date .month {
-        display: inline;
+    .lesson-number {
+        text-align: left;
     }
     
-    .event-date .day {
-        font-size: 20px;
-    }
-    
-    .subscribe-card {
-        padding: 24px;
-        margin: 40px 0;
-    }
-    
-    .subscribe-form {
-        flex-direction: column;
-    }
-    
-    .subscribe-form button {
-        width: 100%;
-    }
-    
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 32px;
-        text-align: center;
-    }
-    
-    .social-links {
-        justify-content: center;
-    }
-    
-    .top-bar {
-        font-size: 10px;
-        padding: 6px 12px;
-    }
-    
-    .terminal-path {
-        font-size: 10px;
-    }
-    
-    /* Адаптация быстрых карточек */
-    .quick-access {
-        gap: 16px;
-        margin: 40px 0;
-    }
-    
-    .quick-card {
-        padding: 20px 16px;
-    }
-    
-    .quick-icon {
-        font-size: 36px;
-    }
-    
-    .quick-card h3 {
-        font-size: 18px;
-    }
-    
-    /* Адаптация Telegram карточки */
     .telegram-card {
         padding: 24px;
         text-align: center;
@@ -821,15 +754,64 @@ html {
         padding: 8px 16px;
         font-size: 12px;
     }
+    
+    .help-card {
+        text-align: center;
+        justify-content: center;
+    }
+    
+    .quick-access {
+        gap: 16px;
+        margin: 40px 0;
+    }
+    
+    .quick-card {
+        padding: 20px 16px;
+    }
+    
+    .quick-icon {
+        font-size: 36px;
+    }
+    
+    .quick-card h3 {
+        font-size: 18px;
+    }
+    
+    #modal-body {
+        padding: 20px;
+    }
+    
+    .lesson-content h1 {
+        font-size: 22px;
+    }
+    
+    .lesson-content h2 {
+        font-size: 18px;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        text-align: center;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+    
+    .top-bar {
+        font-size: 10px;
+        padding: 6px 12px;
+    }
+    
+    .terminal-path {
+        font-size: 10px;
+    }
 }
 
 @media (max-width: 480px) {
     .container {
         padding: 0 16px;
-    }
-    
-    .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
     }
     
     .article-card {
@@ -853,5 +835,18 @@ html {
     
     .tg-link {
         justify-content: center;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .stat-card {
+        padding: 16px;
+    }
+    
+    .stat-number {
+        font-size: 28px;
     }
 }
