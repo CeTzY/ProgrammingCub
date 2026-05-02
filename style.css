@@ -39,7 +39,7 @@ body {
     font-family: monospace;
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 101;
 }
 
 .terminal-dots {
@@ -66,14 +66,14 @@ body {
     animation: pulse 2s infinite;
 }
 
-/* НАВИГАЦИЯ СТРАНИЦ — ИСПРАВЛЕНО */
+/* НАВИГАЦИЯ СТРАНИЦ — ПРЯМО ПОД ТОП-БАРОМ */
 .nav-tabs {
     display: flex;
     background: var(--bg-card);
     border-bottom: 1px solid var(--border);
     position: sticky;
     top: 33px;
-    z-index: 90;
+    z-index: 100;
     width: 100%;
     margin: 0;
     padding: 0;
