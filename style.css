@@ -27,6 +27,7 @@ body {
     padding-bottom: 70px;
 }
 
+/* Верхняя консольная строка */
 .top-bar {
     background: var(--bg-terminal);
     padding: 8px 20px;
@@ -65,687 +66,6 @@ body {
     animation: pulse 2s infinite;
 }
 
-nav {
-    background: rgba(10, 10, 15, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border);
-    position: sticky;
-    top: 33px;
-    z-index: 99;
-}
-
-.nav-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 64px;
-}
-
-.logo {
-    font-weight: 700;
-    font-size: 18px;
-}
-
-.bracket {
-    color: var(--primary);
-    font-weight: 400;
-}
-
-.nav-links {
-    display: flex;
-    gap: 32px;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: var(--text-muted);
-    font-size: 14px;
-    transition: color 0.3s;
-}
-
-.nav-links a:hover {
-    color: var(--primary);
-}
-
-.mobile-menu-btn {
-    display: none;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-.hero {
-    padding: 60px 20px;
-    background: linear-gradient(135deg, var(--bg-dark) 0%, #0f0f1a 100%);
-}
-
-.hero-content {
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.terminal-window {
-    background: var(--bg-terminal);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-}
-
-.terminal-header {
-    background: #1a1a24;
-    padding: 12px 16px;
-    font-size: 13px;
-    color: var(--text-muted);
-    border-bottom: 1px solid var(--border);
-}
-
-.terminal-body {
-    padding: 24px;
-}
-
-.terminal-body p {
-    margin-bottom: 12px;
-}
-
-.prompt {
-    color: var(--primary);
-    font-weight: bold;
-}
-
-.output {
-    color: var(--text-muted);
-    margin-left: 20px;
-}
-
-.code-block {
-    background: #08080c;
-    padding: 16px;
-    border-radius: 8px;
-    margin-top: 16px;
-    border-left: 3px solid var(--primary);
-}
-
-.code-block pre {
-    font-family: 'Fira Code', monospace;
-    font-size: 14px;
-    overflow-x: auto;
-}
-
-.code-keyword { color: #ff79c6; }
-.code-variable { color: #50fa7b; }
-.code-function { color: #8be9fd; }
-.code-string { color: #f1fa8c; }
-
-.quick-access {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 24px;
-    margin: 60px 0 40px;
-}
-
-.quick-card {
-    background: linear-gradient(135deg, var(--bg-card) 0%, #1a1a24 100%);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 28px 24px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.quick-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.1), transparent);
-    transition: left 0.5s;
-}
-
-.quick-card:hover::before {
-    left: 100%;
-}
-
-.quick-card:hover {
-    transform: translateY(-5px);
-    border-color: var(--primary);
-    box-shadow: 0 8px 32px rgba(0, 255, 136, 0.15);
-}
-
-.quick-icon {
-    font-size: 48px;
-    margin-bottom: 16px;
-}
-
-.quick-card h3 {
-    font-size: 20px;
-    margin-bottom: 12px;
-    color: var(--primary);
-}
-
-.quick-card p {
-    font-size: 14px;
-    color: var(--text-muted);
-    margin-bottom: 16px;
-    line-height: 1.5;
-}
-
-.quick-link {
-    display: inline-block;
-    font-size: 13px;
-    color: var(--primary);
-    font-family: monospace;
-    transition: transform 0.3s;
-}
-
-.quick-card:hover .quick-link {
-    transform: translateX(5px);
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin: 60px 0 32px;
-    flex-wrap: wrap;
-    gap: 16px;
-}
-
-.section-header h2 {
-    font-size: 24px;
-    color: var(--primary);
-    font-family: monospace;
-}
-
-.see-all {
-    text-decoration: none;
-    color: var(--text-muted);
-    font-size: 14px;
-    transition: color 0.3s;
-}
-
-.see-all:hover {
-    color: var(--primary);
-}
-
-.lessons-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-bottom: 60px;
-}
-
-.lesson-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px;
-    display: flex;
-    gap: 20px;
-    transition: all 0.3s;
-    cursor: pointer;
-}
-
-.lesson-card:hover {
-    transform: translateX(5px);
-    border-color: var(--primary);
-    box-shadow: 0 4px 20px rgba(0, 255, 136, 0.1);
-}
-
-.lesson-number {
-    font-size: 32px;
-    font-weight: bold;
-    color: var(--primary);
-    font-family: monospace;
-    min-width: 60px;
-    text-align: center;
-}
-
-.lesson-info {
-    flex: 1;
-}
-
-.lesson-info h3 {
-    font-size: 20px;
-    margin-bottom: 8px;
-}
-
-.lesson-info p {
-    color: var(--text-muted);
-    font-size: 14px;
-    margin-bottom: 12px;
-}
-
-.lesson-meta {
-    display: flex;
-    gap: 16px;
-    font-size: 12px;
-    color: var(--text-muted);
-}
-
-.telegram-card {
-    background: linear-gradient(135deg, #1a472a 0%, #0a0a0f 100%);
-    border: 1px solid var(--primary);
-    border-radius: 20px;
-    padding: 32px;
-    margin: 60px 0;
-    display: flex;
-    align-items: center;
-    gap: 32px;
-    flex-wrap: wrap;
-    position: relative;
-    overflow: hidden;
-}
-
-.telegram-card::after {
-    content: '💬';
-    position: absolute;
-    font-size: 200px;
-    opacity: 0.05;
-    bottom: -30px;
-    right: -30px;
-    pointer-events: none;
-}
-
-.telegram-icon {
-    font-size: 64px;
-    background: rgba(0, 255, 136, 0.1);
-    width: 100px;
-    height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    border: 2px solid var(--primary);
-}
-
-.telegram-content {
-    flex: 1;
-}
-
-.telegram-content h3 {
-    font-size: 24px;
-    margin-bottom: 12px;
-    color: var(--primary);
-}
-
-.telegram-content p {
-    color: var(--text-muted);
-    margin-bottom: 24px;
-}
-
-.telegram-links {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-}
-
-.tg-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 10px 20px;
-    background: rgba(0, 255, 136, 0.1);
-    border: 1px solid var(--primary);
-    border-radius: 30px;
-    color: var(--primary);
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    transition: all 0.3s;
-}
-
-.tg-link:hover {
-    background: var(--primary);
-    color: var(--bg-dark);
-    transform: translateY(-2px);
-}
-
-.tg-link span {
-    font-size: 18px;
-}
-
-.help-card {
-    background: linear-gradient(135deg, #2a1a3a 0%, #0a0a0f 100%);
-    border: 1px solid var(--secondary);
-    border-radius: 16px;
-    padding: 28px;
-    margin: 40px 0;
-    display: flex;
-    align-items: center;
-    gap: 24px;
-    flex-wrap: wrap;
-}
-
-.help-icon {
-    font-size: 48px;
-}
-
-.help-content h3 {
-    font-size: 22px;
-    margin-bottom: 8px;
-    color: var(--secondary);
-}
-
-.help-content p {
-    color: var(--text-muted);
-    font-size: 14px;
-}
-
-.help-content a {
-    color: var(--primary);
-    text-decoration: none;
-}
-
-/* BOTTOM MENU */
-.bottom-menu {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: rgba(10, 10, 15, 0.95);
-    backdrop-filter: blur(10px);
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-around;
-    padding: 8px 16px 12px;
-    z-index: 100;
-    transform: translateY(100%);
-    transition: transform 0.3s ease;
-}
-
-.bottom-menu.visible {
-    transform: translateY(0);
-}
-
-.menu-btn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 4px;
-    background: none;
-    border: none;
-    color: var(--text-muted);
-    font-size: 12px;
-    cursor: pointer;
-    padding: 6px 12px;
-    border-radius: 8px;
-    transition: all 0.2s;
-    font-family: monospace;
-}
-
-.menu-btn span:first-child {
-    font-size: 22px;
-}
-
-.menu-btn:hover {
-    color: var(--primary);
-    background: rgba(0, 255, 136, 0.1);
-}
-
-.menu-btn.active {
-    color: var(--primary);
-}
-
-/* MODAL */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    overflow-y: auto;
-}
-
-.modal-content {
-    background: var(--bg-card);
-    margin: 5% auto;
-    max-width: 800px;
-    width: 90%;
-    border-radius: 16px;
-    border: 1px solid var(--primary);
-    position: relative;
-    animation: modalFadeIn 0.3s;
-}
-
-@keyframes modalFadeIn {
-    from { opacity: 0; transform: translateY(-50px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.close {
-    position: absolute;
-    right: 20px;
-    top: 15px;
-    font-size: 32px;
-    font-weight: bold;
-    color: var(--text-muted);
-    cursor: pointer;
-    transition: color 0.3s;
-    z-index: 10;
-}
-
-.close:hover {
-    color: var(--primary);
-}
-
-#modal-body {
-    padding: 30px;
-    max-height: 70vh;
-    overflow-y: auto;
-}
-
-.modal-footer {
-    padding: 20px 30px;
-    border-top: 1px solid var(--border);
-}
-
-.lesson-content {
-    font-family: 'Fira Code', monospace;
-}
-
-.lesson-content h1 {
-    color: var(--primary);
-    font-size: 28px;
-    margin-bottom: 20px;
-}
-
-.lesson-content h2 {
-    color: var(--secondary);
-    font-size: 22px;
-    margin: 25px 0 15px;
-}
-
-.lesson-content h3 {
-    color: var(--text);
-    font-size: 18px;
-    margin: 20px 0 10px;
-}
-
-.lesson-content p {
-    color: var(--text-muted);
-    line-height: 1.6;
-    margin-bottom: 15px;
-}
-
-.lesson-content .code-example {
-    background: #0a0a0f;
-    padding: 15px;
-    border-radius: 8px;
-    border-left: 3px solid var(--primary);
-    margin: 15px 0;
-    overflow-x: auto;
-}
-
-.lesson-content code {
-    font-family: 'Fira Code', monospace;
-    font-size: 13px;
-    color: #00ff88;
-}
-
-.lesson-content .task {
-    background: rgba(0, 184, 255, 0.1);
-    padding: 15px;
-    border-radius: 8px;
-    margin: 20px 0;
-    border-left: 3px solid var(--secondary);
-}
-
-.lesson-content .task h4 {
-    color: var(--secondary);
-    margin-bottom: 10px;
-}
-
-.lesson-content hr {
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: 20px 0;
-}
-
-.lesson-content ul, .lesson-content ol {
-    margin: 10px 0 15px 25px;
-    color: var(--text-muted);
-}
-
-.lesson-content li {
-    margin: 8px 0;
-}
-
-footer {
-    background: var(--bg-terminal);
-    border-top: 1px solid var(--border);
-    margin-top: 60px;
-    padding: 48px 20px 24px;
-}
-
-.footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 48px;
-    margin-bottom: 48px;
-}
-
-.footer-section .logo {
-    margin-bottom: 12px;
-}
-
-.tagline {
-    font-size: 12px;
-    color: var(--text-muted);
-    margin-bottom: 20px;
-}
-
-.social-links {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-}
-
-.social-links a, .footer-section a {
-    color: var(--text-muted);
-    text-decoration: none;
-    font-size: 14px;
-    transition: color 0.3s;
-    display: inline-block;
-    margin-bottom: 8px;
-}
-
-.social-links a:hover, .footer-section a:hover {
-    color: var(--primary);
-}
-
-.footer-section h4 {
-    margin-bottom: 16px;
-    font-size: 14px;
-    color: var(--primary);
-}
-
-.footer-section a {
-    display: block;
-}
-
-.footer-bottom {
-    text-align: center;
-    padding-top: 24px;
-    border-top: 1px solid var(--border);
-    color: var(--text-muted);
-    font-size: 12px;
-}
-
-@keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-@media (max-width: 768px) {
-    body {
-        padding-bottom: 60px;
-    }
-    
-    .nav-links { display: none; }
-    .mobile-menu-btn { display: block; }
-    .hero { padding: 40px 16px; }
-    .terminal-body { padding: 16px; font-size: 13px; overflow-x: auto; }
-    .section-header { margin: 40px 0 24px; }
-    .lesson-card { flex-direction: column; align-items: flex-start; gap: 12px; }
-    .lesson-number { text-align: left; }
-    .telegram-card { padding: 24px; text-align: center; justify-content: center; }
-    .telegram-icon { width: 70px; height: 70px; font-size: 36px; }
-    .telegram-content h3 { font-size: 20px; }
-    .telegram-links { justify-content: center; }
-    .tg-link { padding: 8px 16px; font-size: 12px; }
-    .help-card { text-align: center; justify-content: center; }
-    .quick-access { gap: 16px; margin: 40px 0; }
-    .quick-card { padding: 20px 16px; }
-    .quick-icon { font-size: 36px; }
-    .quick-card h3 { font-size: 18px; }
-    #modal-body { padding: 20px; }
-    .lesson-content h1 { font-size: 22px; }
-    .lesson-content h2 { font-size: 18px; }
-    .footer-content { grid-template-columns: 1fr; gap: 32px; text-align: center; }
-    .social-links { justify-content: center; }
-    .top-bar { font-size: 10px; padding: 6px 12px; }
-    .terminal-path { font-size: 10px; }
-    
-    .bottom-menu {
-        padding: 6px 12px 10px;
-    }
-    .menu-btn span:first-child {
-        font-size: 18px;
-    }
-    .menu-btn span:last-child {
-        font-size: 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    .container { padding: 0 16px; }
-    .telegram-links { flex-direction: column; width: 100%; }
-    .tg-link { justify-content: center; }
-}
-
 /* НАВИГАЦИЯ СТРАНИЦ */
 .nav-tabs {
     display: flex;
@@ -778,6 +98,7 @@ html {
     border-bottom: 2px solid var(--primary);
 }
 
+/* СТРАНИЦЫ */
 .page {
     display: none;
     padding: 20px;
@@ -793,7 +114,12 @@ html {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* МИНИ-ТЕРМИНАЛ НА ГЛАВНОЙ */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* МИНИ-ТЕРМИНАЛ */
 .hero-mini {
     margin-bottom: 24px;
 }
@@ -821,6 +147,11 @@ html {
     line-height: 1.6;
     font-family: monospace;
     white-space: pre-wrap;
+}
+
+.prompt {
+    color: var(--primary);
+    font-weight: bold;
 }
 
 /* ФОРМА СДАЧИ ДЗ */
@@ -913,6 +244,88 @@ html {
     text-align: center;
 }
 
+/* СЕКЦИИ */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.section-header h2 {
+    font-size: 20px;
+    color: var(--primary);
+    font-family: monospace;
+}
+
+.see-all {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 12px;
+    transition: color 0.3s;
+}
+
+.see-all:hover {
+    color: var(--primary);
+}
+
+/* СЕТКА УРОКОВ */
+.lessons-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.lesson-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    gap: 16px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.lesson-card:hover {
+    transform: translateX(5px);
+    border-color: var(--primary);
+    box-shadow: 0 4px 20px rgba(0, 255, 136, 0.1);
+}
+
+.lesson-number {
+    font-size: 28px;
+    font-weight: bold;
+    color: var(--primary);
+    font-family: monospace;
+    min-width: 50px;
+    text-align: center;
+}
+
+.lesson-info {
+    flex: 1;
+}
+
+.lesson-info h3 {
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+
+.lesson-info p {
+    color: var(--text-muted);
+    font-size: 12px;
+    margin-bottom: 8px;
+}
+
+.lesson-meta {
+    display: flex;
+    gap: 12px;
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
 /* ТОП ЛИСТ */
 .top-list {
     display: flex;
@@ -945,19 +358,27 @@ html {
 .top-name {
     flex: 1;
     font-weight: 500;
+    font-size: 14px;
 }
 
 .top-exp {
     color: var(--primary);
     font-weight: bold;
+    font-size: 13px;
 }
 
 .top-rank {
-    font-size: 12px;
+    font-size: 11px;
     color: var(--text-muted);
     background: rgba(0, 255, 136, 0.1);
     padding: 4px 10px;
     border-radius: 20px;
+}
+
+.loading {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 40px;
 }
 
 /* ПРОФИЛЬ */
@@ -1036,34 +457,194 @@ html {
     margin-top: 6px;
 }
 
-.loading {
-    text-align: center;
-    color: var(--text-muted);
-    padding: 40px;
+/* КАРТОЧКА ПОМОЩИ */
+.help-card {
+    background: linear-gradient(135deg, #2a1a3a 0%, #0a0a0f 100%);
+    border: 1px solid var(--secondary);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
 }
 
-/* АДАПТАЦИЯ ПОД ТЕЛЕФОН */
+.help-icon {
+    font-size: 36px;
+}
+
+.help-content h3 {
+    font-size: 16px;
+    margin-bottom: 6px;
+    color: var(--secondary);
+}
+
+.help-content p {
+    color: var(--text-muted);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* ФУТЕР */
+footer {
+    background: var(--bg-terminal);
+    border-top: 1px solid var(--border);
+    margin-top: 40px;
+    padding: 30px 20px 20px;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.bracket {
+    color: var(--primary);
+}
+
+.tagline {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+}
+
+.social-links {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.social-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 12px;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: var(--primary);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 10px;
+}
+
+/* ========== АДАПТАЦИЯ ПОД ТЕЛЕФОН ========== */
 @media (max-width: 768px) {
+    .top-bar {
+        font-size: 10px;
+        padding: 6px 12px;
+    }
+    
+    .terminal-path {
+        font-size: 9px;
+    }
+    
     .nav-tab {
-        font-size: 12px;
-        padding: 10px;
+        font-size: 11px;
+        padding: 10px 8px;
+    }
+    
+    .page {
+        padding: 16px;
     }
     
     .level-btn {
-        font-size: 12px;
+        font-size: 11px;
         min-width: 80px;
+        padding: 8px 12px;
     }
     
     .top-item {
         flex-wrap: wrap;
+        gap: 8px;
+    }
+    
+    .top-medal {
+        width: 35px;
+        font-size: 20px;
     }
     
     .top-rank {
-        margin-left: 52px;
+        margin-left: 47px;
     }
     
     .stats-grid-mini {
         flex-direction: column;
         gap: 16px;
     }
+    
+    .lesson-card {
+        padding: 12px;
+        gap: 12px;
+    }
+    
+    .lesson-number {
+        font-size: 22px;
+        min-width: 40px;
+    }
+    
+    .profile-card {
+        padding: 20px;
+    }
+    
+    .avatar {
+        font-size: 56px;
+    }
+    
+    #user-name {
+        font-size: 18px;
+    }
+    
+    .help-card {
+        padding: 16px;
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .level-buttons {
+        flex-direction: column;
+    }
+    
+    .level-btn {
+        width: 100%;
+    }
+    
+    .top-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .top-medal {
+        width: auto;
+    }
+    
+    .top-rank {
+        margin-left: 0;
+    }
+    
+    .terminal-body-mini {
+        font-size: 11px;
+        overflow-x: auto;
+    }
+}
+
+/* АНИМАЦИИ */
+html {
+    scroll-behavior: smooth;
 }
