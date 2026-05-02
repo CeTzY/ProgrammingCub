@@ -42,20 +42,16 @@ document.querySelectorAll(".nav-tab").forEach(tab => {
     });
 });
 
-// ========== ЗАГРУЗКА ТЕКУЩЕГО ДЗ (хардкод) ==========
+// ========== ЗАГРУЗКА ТЕКУЩЕГО ДЗ (из GitHub) ==========
 async function loadCurrentHW() {
     const hwContent = document.getElementById("hw-content");
+    hwContent.innerHTML = "🐍 Загрузка...";
     
-    const hwData = {
-        id: 2,
-        title: "ЗАДАНИЯ НА НЕДЕЛЮ — PYTHON С НУЛЯ",
-        easy: "🟢 Сумма чётных чисел — посчитай сумму всех чётных чисел от 1 до N",
-        medium: "🟡 Обратный отсчёт — обратный отсчёт от N до 1 и 'ПУСК!'",
-        hard: "🔵 Калькулятор с историей — +, -, *, /, history, exit",
-        deadline: "Воскресенье, 23:00"
-    };
-    
-    hwContent.innerHTML = `
+    try {
+        const response = await fetch("https://cetzy.github.io/ProgrammingCub/api/hw.json");
+        const hwData = await response.json();
+        
+        hwContent.innerHTML = `
 <span class="prompt">$</span> /hw --current
 
 📚 *Домашнее задание #${hwData.id}*
@@ -73,7 +69,16 @@ async function loadCurrentHW() {
 
 📅 Дедлайн: ${hwData.deadline}
 🏆 Награда: +15 / +30 / +60 опыта
-    `;
+        `;
+    } catch(e) {
+        hwContent.innerHTML = `
+<span class="prompt">$</span> /hw --current
+
+❌ Не удалось загрузить ДЗ.
+
+📝 Напиши /hw в боте @ProgClubBot_bot
+        `;
+    }
 }
 
 // ========== ВЫБОР УРОВНЯ ==========
@@ -131,53 +136,80 @@ document.getElementById("submit-code-btn")?.addEventListener("click", async () =
     submitBtn.disabled = false;
 });
 
-// ========== ЗАГРУЗКА ТАБЛИЦЫ ЛИДЕРОВ (ЗАГЛУШКА) ==========
+// ========== ЗАГРУЗКА ТАБЛИЦЫ ЛИДЕРОВ (из GitHub) ==========
 async function loadTopList() {
     const topContainer = document.getElementById("top-list");
-    topContainer.innerHTML = `
-        <div class="terminal-mini" style="margin-top: 0;">
-            <div class="terminal-header">$ cat top.txt</div>
-            <div class="terminal-body-mini">
-<span class="prompt">$</span> /hw_top --leaderboard
-
-┌─────────────────────────────────────────┐
-│           🏆 ТОП УЧАСТНИКОВ             │
-├─────────────────────────────────────────┤
-│  🥇 CeTzY          — 150 опыта          │
-│  🥈 Скоро         — тут будешь ты       │
-│  🥉               —                     │
-└─────────────────────────────────────────┘
-
-📊 Полный топ в боте: /hw_top
-🤖 @ProgClubBot_bot
-            </div>
-        </div>
-    `;
+    topContainer.innerHTML = '<div class="loading">🏆 Загрузка таблицы лидеров...</div>';
+    
+    try {
+        const response = await fetch("https://cetzy.github.io/ProgrammingCub/api/top.json");
+        const users = await response.json();
+        
+        if (!users || users.length === 0) {
+            topContainer.innerHTML = '<div class="loading">📭 Пока никого нет. Стань первым!</div>';
+            return;
+        }
+        
+        topContainer.innerHTML = "";
+        users.forEach((user, index) => {
+            const medal = index === 0 ? "🥇" : index === 1 ? "🥈" : index === 2 ? "🥉" : `${index + 1}.`;
+            const item = document.createElement("div");
+            item.className = "top-item";
+            item.innerHTML = `
+                <div class="top-medal">${medal}</div>
+                <div class="top-name">${user.name}</div>
+                <div class="top-exp">${user.exp} опыта</div>
+                <div class="top-rank">${user.rank}</div>
+            `;
+            topContainer.appendChild(item);
+        });
+    } catch(e) {
+        topContainer.innerHTML = '<div class="loading">❌ Временно недоступно. Напиши /hw top в боте</div>';
+    }
 }
 
-// ========== ЗАГРУЗКА ПРОФИЛЯ (ЗАГЛУШКА) ==========
+// ========== ЗАГРУЗКА ПРОФИЛЯ (из GitHub) ==========
 async function loadProfile() {
     if (!userId) {
         document.getElementById("user-points").innerText = "?";
         document.getElementById("user-hw-done").innerText = "?";
         document.getElementById("user-level").innerText = "?";
         document.getElementById("user-rank").innerText = "Авторизуйся в Telegram";
+        document.getElementById("exp-fill").style.width = "0%";
+        document.getElementById("exp-text").innerText = "0 / 0 опыта";
         return;
     }
     
-    document.getElementById("user-points").innerText = "0";
-    document.getElementById("user-hw-done").innerText = "0";
-    document.getElementById("user-level").innerText = "1";
-    document.getElementById("user-rank").innerText = "🥚 Новичок";
-    document.getElementById("exp-fill").style.width = "0%";
-    document.getElementById("exp-text").innerText = "0 / 50 опыта";
+    try {
+        const response = await fetch(`https://cetzy.github.io/ProgrammingCub/api/user_${userId}.json`);
+        if (!response.ok) {
+            throw new Error("Профиль не найден");
+        }
+        const data = await response.json();
+        
+        document.getElementById("user-points").innerText = data.points || 0;
+        document.getElementById("user-hw-done").innerText = data.hw_done || 0;
+        document.getElementById("user-level").innerText = data.level || 1;
+        document.getElementById("user-rank").innerText = data.rank || "🥚 Новичок";
+        
+        const expPercent = (data.exp / data.next_exp) * 100;
+        document.getElementById("exp-fill").style.width = expPercent + "%";
+        document.getElementById("exp-text").innerText = `${data.exp} / ${data.next_exp} опыта`;
+    } catch(e) {
+        document.getElementById("user-points").innerText = "0";
+        document.getElementById("user-hw-done").innerText = "0";
+        document.getElementById("user-level").innerText = "1";
+        document.getElementById("user-rank").innerText = "🥚 Новичок";
+        document.getElementById("exp-fill").style.width = "0%";
+        document.getElementById("exp-text").innerText = "0 / 50 опыта";
+    }
 }
 
 // ========== ЗАГРУЗКА СПИСКА УРОКОВ ==========
 function loadLessons() {
     const lessonsGrid = document.getElementById("lessons-list");
     const lessons = [
-        { num: 1, title: "Переменные", desc: "Что это вообще такое и для чего нужны", duration: "15 мин", level: "⭐" },
+        { num: 1, title: "Переменные", desc: "Что это вообще такое и для чего нужны. Типы данных", duration: "15 мин", level: "⭐" },
         { num: 2, title: "Вывод и ввод", desc: "print() и input(). Учимся общаться с программой", duration: "12 мин", level: "⭐" },
         { num: 3, title: "Условия", desc: "if, elif, else. Программа выбирает, что делать", duration: "18 мин", level: "⭐⭐" },
         { num: 4, title: "Арифметика и логика", desc: "Операторы, сравнения, приоритеты", duration: "20 мин", level: "⭐⭐" },
@@ -211,4 +243,4 @@ function loadLessons() {
 loadCurrentHW();
 loadLessons();
 
-console.log("%c🚀 Programming Cub Mini App v2.0 запущен!", "color: #00ff88; font-size: 16px; font-family: monospace;");
+console.log("%c🚀 Programming Cub Mini App v3.0 — полностью динамический!", "color: #00ff88; font-size: 16px; font-family: monospace;");
