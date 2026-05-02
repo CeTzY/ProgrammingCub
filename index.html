@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Programming Cub | ДЗ и уроки</title>
+    <title>Programming Cub</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
+    <!-- Верхняя панель -->
     <div class="top-bar">
         <div class="terminal-dots">
             <span class="dot red"></span>
@@ -18,55 +19,18 @@
         <div class="terminal-status">online</div>
     </div>
 
-    <!-- Нижний хотбар -->
+    <!-- Контент -->
+    <div id="app" class="container"></div>
+
+    <!-- Нижнее меню -->
     <div class="bottom-nav">
-        <button class="bottom-nav-btn active" data-page="home">🏠<span>Главная</span></button>
-        <button class="bottom-nav-btn" data-page="lessons">📚<span>Уроки</span></button>
-        <button class="bottom-nav-btn" data-page="top">🏆<span>Топ</span></button>
-        <button class="bottom-nav-btn" data-page="profile">👤<span>Профиль</span></button>
+        <button class="nav-btn active" data-page="home">🏠<span>ДЗ</span></button>
+        <button class="nav-btn" data-page="lessons">📚<span>Уроки</span></button>
+        <button class="nav-btn" data-page="top">🏆<span>Топ</span></button>
+        <button class="nav-btn" data-page="profile">👤<span>Профиль</span></button>
     </div>
 
-    <!-- СТРАНИЦА 1: ДЗ (развёрнутое) -->
-    <div id="page-home" class="page active">
-        <div id="hw-full-content">
-            <!-- Сюда загружается полное ДЗ с описанием -->
-        </div>
-    </div>
-
-    <!-- СТРАНИЦА 2: УРОКИ -->
-    <div id="page-lessons" class="page">
-        <div class="section-header">
-            <h2>📚 Уроки Python</h2>
-        </div>
-        <div class="lessons-grid" id="lessons-list"></div>
-    </div>
-
-    <!-- СТРАНИЦА 3: ТОП -->
-    <div id="page-top" class="page">
-        <div class="section-header">
-            <h2>🏆 Таблица лидеров</h2>
-        </div>
-        <div id="top-list" class="top-list"></div>
-    </div>
-
-    <!-- СТРАНИЦА 4: ПРОФИЛЬ -->
-    <div id="page-profile" class="page">
-        <div class="profile-card">
-            <div class="avatar">👤</div>
-            <h2 id="user-name">Загрузка...</h2>
-            <div class="rank-badge" id="user-rank">🥚 Новичок</div>
-            <div class="exp-bar-container">
-                <div class="exp-bar"><div class="exp-fill" id="exp-fill" style="width: 0%"></div></div>
-                <div class="exp-text" id="exp-text">0 / 0 опыта</div>
-            </div>
-            <div class="stats-grid-mini">
-                <div class="stat-mini">🏆 Очки<br><span id="user-points">0</span></div>
-                <div class="stat-mini">📚 Сдано ДЗ<br><span id="user-hw-done">0</span></div>
-                <div class="stat-mini">⭐ Уровень<br><span id="user-level">1</span></div>
-            </div>
-        </div>
-    </div>
-
+    <script src="data.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
