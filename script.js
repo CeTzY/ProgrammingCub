@@ -48,7 +48,7 @@ function renderNews() {
     container.innerHTML = html;
 }
 
-// ========== ДОМАШНЕЕ ЗАДАНИЕ (ТОЛЬКО ДЛЯ ЧТЕНИЯ) ==========
+// ========== ДОМАШНЕЕ ЗАДАНИЕ ==========
 function renderHomework() {
     const container = document.getElementById("homework-content");
     if (!container) return;
@@ -79,7 +79,7 @@ function renderHomework() {
     container.innerHTML = html;
 }
 
-// ========== ТАБЛИЦА ЛИДЕРОВ (С ГИТХАБА) ==========
+// ========== ТАБЛИЦА ЛИДЕРОВ ==========
 async function renderTop() {
     const container = document.getElementById("top-list");
     if (!container) return;
@@ -115,37 +115,57 @@ async function renderTop() {
     }
 }
 
-// ========== ПРОФИЛЬ ==========
-function renderProfile() {
-    if (!userName) {
-        const user = tg?.initDataUnsafe?.user;
-        userName = user?.first_name || "Участник";
-        document.getElementById("user-name").innerText = userName;
+// ========== ПРОФИЛЬ (реальные данные с GitHub) ==========
+async function renderProfile() {
+    const container = document.getElementById("profile-content");
+    if (!container) return;
+    
+    // Если нет ID из Telegram
+    if (!userId) {
+        document.getElementById("user-name").innerText = userName || "Гость";
+        document.getElementById("exp-fill").style.width = "0%";
+        document.getElementById("exp-text").innerText = "0 / 50 опыта";
+        document.getElementById("user-points").innerText = "0";
+        document.getElementById("user-hw-done").innerText = "0";
+        document.getElementById("user-level").innerText = "1";
+        document.getElementById("user-rank").innerText = "🥚 Новичок";
+        return;
     }
     
-    // Данные профиля (временно заглушка, потом можно подтягивать с GitHub)
-    const exp = 150;
-    const nextExp = 300;
-    const percent = (exp / nextExp) * 100;
-    
-    const expFill = document.getElementById("exp-fill");
-    if (expFill) expFill.style.width = percent + "%";
-    
-    const expText = document.getElementById("exp-text");
-    if (expText) expText.innerText = `${exp} / ${nextExp} опыта`;
-    
-    const pointsSpan = document.getElementById("user-points");
-    if (pointsSpan) pointsSpan.innerText = "25";
-    
-    const hwDoneSpan = document.getElementById("user-hw-done");
-    if (hwDoneSpan) hwDoneSpan.innerText = "3";
-    
-    const levelSpan = document.getElementById("user-level");
-    if (levelSpan) levelSpan.innerText = "3";
-    
-    const rankSpan = document.getElementById("user-rank");
-    if (rankSpan) rankSpan.innerText = "🐍 Питонист";
+    // Загружаем профиль с GitHub
+    try {
+        const response = await fetch(`https://cetzy.github.io/ProgrammingCub/api/users/${userId}.json`);
+        
+        if (!response.ok) {
+            throw new Error("Профиль не найден");
+        }
+        
+        const profile = await response.json();
+        
+        document.getElementById("user-name").innerText = profile.name || userName;
+        document.getElementById("user-points").innerText = profile.points || 0;
+        document.getElementById("user-hw-done").innerText = profile.hw_done || 0;
+        document.getElementById("user-level").innerText = profile.level || 1;
+        document.getElementById("user-rank").innerText = profile.rank || "🥚 Новичок";
+        
+        const exp = profile.exp || 0;
+        const nextExp = profile.next_exp || 50;
+        const percent = (exp / nextExp) * 100;
+        document.getElementById("exp-fill").style.width = percent + "%";
+        document.getElementById("exp-text").innerText = `${exp} / ${nextExp} опыта`;
+        
+    } catch(e) {
+        console.log("Профиль не найден, заглушка");
+        document.getElementById("user-name").innerText = userName || "Участник";
+        document.getElementById("exp-fill").style.width = "0%";
+        document.getElementById("exp-text").innerText = "0 / 50 опыта";
+        document.getElementById("user-points").innerText = "0";
+        document.getElementById("user-hw-done").innerText = "0";
+        document.getElementById("user-level").innerText = "1";
+        document.getElementById("user-rank").innerText = "🥚 Новичок";
+    }
 }
 
 // ========== ЗАПУСК ==========
 renderNews();
+renderProfile();
