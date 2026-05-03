@@ -1,10 +1,10 @@
 {
   "id": 5983870998,
   "name": "Лёша",
-  "exp": 45,
-  "points": 15,
+  "exp": 60,
+  "points": 20,
   "hw_done": 1,
-  "level": 1,
-  "rank": "🥚 Новичок",
-  "next_exp": 50
+  "level": 2,
+  "rank": "📖 Ученик",
+  "next_exp": 150
 }
