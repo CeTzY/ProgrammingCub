@@ -14,6 +14,21 @@ if (tg) {
     }
 }
 
+// ========== АНИМАЦИЯ ЗАГРУЗКИ ==========
+function showLoading(containerId) {
+    const container = document.getElementById(containerId);
+    if (container) {
+        container.innerHTML = '<div class="loading-spinner">⏳ Загрузка...</div>';
+    }
+}
+
+function hideLoading(containerId, content) {
+    const container = document.getElementById(containerId);
+    if (container) {
+        container.innerHTML = content;
+    }
+}
+
 // ========== НАВИГАЦИЯ ==========
 document.querySelectorAll(".nav-btn").forEach(btn => {
     btn.addEventListener("click", () => {
@@ -35,6 +50,24 @@ function renderNews() {
     const container = document.getElementById("news-list");
     if (!container) return;
     
+    const NEWS = [
+        {
+            date: "2026-05-03",
+            title: "🔥 ДЗ #1 уже в боте!",
+            text: "Сумма чётных чисел, обратный отсчёт, калькулятор с историей. Сдавай и получай опыт!"
+        },
+        {
+            date: "2026-05-02",
+            title: "📱 Mini App обновился",
+            text: "Теперь профиль показывает реальный опыт и очки из бота. Топ синхронизируется автоматически."
+        },
+        {
+            date: "2026-04-28",
+            title: "🏆 Появилась система уровней",
+            text: "За каждое ДЗ начисляется опыт. Чем больше опыт — тем выше ранг!"
+        }
+    ];
+    
     let html = "";
     for (let n of NEWS) {
         html += `
@@ -48,18 +81,23 @@ function renderNews() {
     container.innerHTML = html;
 }
 
-// ========== ДОМАШНЕЕ ЗАДАНИЕ ==========
+// ========== ДОМАШНЕЕ ЗАДАНИЕ (только чтение) ==========
 function renderHomework() {
     const container = document.getElementById("homework-content");
     if (!container) return;
     
-    let html = `
-        <div class="hw-header">
-            <h2>📚 Домашнее задание #${HOMEWORK.id}</h2>
-            <div class="hw-deadline">📅 Дедлайн: ${HOMEWORK.deadline}</div>
-        </div>
-    `;
+    const HOMEWORK = {
+        id: 1,
+        title: "ЗАДАНИЯ НА НЕДЕЛЮ — PYTHON С НУЛЯ",
+        deadline: "Воскресенье, 23:00",
+        levels: [
+            { level: 1, name: "🟢 Уровень 1 — новичок", title: "Сумма чётных чисел", description: "Напиши программу, которая считает сумму всех чётных чисел от 1 до N.", example: "Ввод: 10\nВывод: 30" },
+            { level: 2, name: "🟡 Уровень 2 — средний", title: "Обратный отсчёт", description: "Программа выводит обратный отсчёт от N до 1, в конце 'ПУСК!'.", example: "Ввод: 5\n5 4 3 2 1 ПУСК!" },
+            { level: 3, name: "🔴 Уровень 3 — профи", title: "Калькулятор с историей", description: "Программа поддерживает +, -, *, /, history, exit.", example: "> +\n10\n5\nРезультат: 15" }
+        ]
+    };
     
+    let html = `<div class="hw-header"><h2>📚 Домашнее задание #${HOMEWORK.id}</h2><div class="hw-deadline">📅 Дедлайн: ${HOMEWORK.deadline}</div></div>`;
     for (let lvl of HOMEWORK.levels) {
         const levelClass = lvl.level === 1 ? "easy" : lvl.level === 2 ? "medium" : "hard";
         html += `
@@ -67,31 +105,24 @@ function renderHomework() {
                 <div class="hw-level ${levelClass}">${lvl.name}</div>
                 <div class="hw-title">${lvl.title}</div>
                 <div class="hw-description">${lvl.description}</div>
-                <div class="hw-section">
-                    <div class="hw-section-title">📌 Пример</div>
-                    <div class="hw-example">${lvl.example}</div>
-                </div>
+                <div class="hw-section"><div class="hw-section-title">📌 Пример</div><div class="hw-example">${lvl.example}</div></div>
             </div>
         `;
     }
-    
     html += `<div class="info-box">⚡ Сдать задание можно в боте: @ProgClubBot_bot</div>`;
     container.innerHTML = html;
 }
 
 // ========== ТАБЛИЦА ЛИДЕРОВ ==========
 async function renderTop() {
-    const container = document.getElementById("top-list");
-    if (!container) return;
-    
-    container.innerHTML = '<div class="loading">🏆 Загрузка таблицы лидеров...</div>';
+    showLoading("top-list");
     
     try {
         const response = await fetch("https://cetzy.github.io/ProgrammingCub/api/top.json");
         const topData = await response.json();
         
         if (!topData || topData.length === 0) {
-            container.innerHTML = '<div class="loading">📭 Пока никого нет. Стань первым!</div>';
+            hideLoading("top-list", '<div class="loading">📭 Пока никого нет. Стань первым!</div>');
             return;
         }
         
@@ -108,10 +139,10 @@ async function renderTop() {
                 </div>
             `;
         }
-        container.innerHTML = html;
+        hideLoading("top-list", html);
     } catch(e) {
         console.error("Ошибка загрузки топа:", e);
-        container.innerHTML = '<div class="loading">❌ Ошибка загрузки. Напиши /hw top в боте</div>';
+        hideLoading("top-list", '<div class="loading">❌ Ошибка загрузки. Напиши /hw top в боте</div>');
     }
 }
 
